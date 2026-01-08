@@ -102,11 +102,6 @@ public class CalculateSales {
 
 	}
 
-	private static Long Long(String string) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
 	/**
 	 * 支店定義ファイル読み込み処理
 	 *
