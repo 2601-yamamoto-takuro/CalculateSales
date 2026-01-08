@@ -68,7 +68,11 @@ public class CalculateSales {
 			// 一行ずつ読み込む
 			while((line = br.readLine()) != null) {
 				// ※ここの読み込み処理を変更してください。(処理内容1-2)
-				System.out.println(line);
+				String[] fileItems = line.split(",");
+
+				//Mapに追加する2つの情報を putの引数として指定します。
+				branchNames.put(fileItems[0], fileItems[1]);
+				branchSales.put(fileItems[0], (long) 0); //固定値は明示必要
 			}
 
 		} catch(IOException e) {
