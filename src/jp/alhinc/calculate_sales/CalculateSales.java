@@ -27,8 +27,7 @@ public class CalculateSales {
 	private static final String SALES_FILE_NUMBER_NOT_CONSECUTIVE = "売上ファイル名が連番になっていません";
 	private static final String AMOUNT_OVER_TEN_DIGITS = "合計⾦額が10桁を超えました";
 	private static final String BRANCH_CODE_INVALID = "の支店コードが不正です";
-	private static final String SALES_FILE_FORMAT_NOT_TWO_LINES = "のフォーマットが不正です" +
-			"";
+	private static final String SALES_FILE_FORMAT_NOT_TWO_LINES = "のフォーマットが不正です";
 	/**
 	 * メインメソッド
 	 *
@@ -117,15 +116,13 @@ public class CalculateSales {
 				// 支店別売上
 				String key = salesList.get(0);
 				Long totalBranchSales = branchSales.get(key) + fileSale;
-				branchSales.put(key, totalBranchSales);
-
-				Long saleAmount = branchSales.get(salesList.get(0));
 
 				// 売上金額の桁数チェック
-				if(saleAmount >= 10000000000L){
+				if (totalBranchSales >= 10000000000L) {
 					System.out.println(AMOUNT_OVER_TEN_DIGITS);
 					return;
 				}
+				branchSales.put(key, totalBranchSales);
 
 			} catch(IOException e) {
 				System.out.println(UNKNOWN_ERROR);
