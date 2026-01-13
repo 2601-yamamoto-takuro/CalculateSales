@@ -202,9 +202,8 @@ public class CalculateSales {
 	 * @param エラーメッセージ用ファイル名
 	 * @return 読み込み可否
 	 */
-	private static boolean readFile(String path, String fileName, Map<String, String> branchNames, Map<String, Long> branchSales,
-			String codeRegex, String errorfileName
-			) {
+	private static boolean readFile(String path, String fileName, Map<String, String> codeToNames, Map<String, Long> codeToSales,
+			String codeRegex, String errorfileName) {
 		BufferedReader br = null;
 
 		try {
@@ -231,8 +230,8 @@ public class CalculateSales {
 				}
 
 				// Mapに追加する2つの情報を putの引数として指定します。
-				branchNames.put(fileItems[0], fileItems[1]);
-				branchSales.put(fileItems[0], (long) 0); //固定値は明示必要
+				codeToNames.put(fileItems[0], fileItems[1]);
+				codeToSales.put(fileItems[0], (long) 0); //固定値は明示必要
 			}
 
 		} catch(IOException e) {
@@ -262,7 +261,7 @@ public class CalculateSales {
 	 * @param 支店コードと売上金額を保持するMap
 	 * @return 書き込み可否
 	 */
-	private static boolean writeFile(String path, String fileName, Map<String, String> branchNames, Map<String, Long> branchSales) {
+	private static boolean writeFile(String path, String fileName, Map<String, String> codeToNames, Map<String, Long> codeToSales) {
 		// ※ここに書き込み処理を作成してください。(処理内容3-1)
 		BufferedWriter bw = null;
 
@@ -271,8 +270,8 @@ public class CalculateSales {
 			FileWriter fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
 
-			for (String key : branchNames.keySet()) {
-				bw.write(key + "," + branchNames.get(key) + "," + branchSales.get(key));
+			for (String key : codeToNames.keySet()) {
+				bw.write(key + "," + codeToNames.get(key) + "," + codeToSales.get(key));
 				bw.newLine();
 			}
 
